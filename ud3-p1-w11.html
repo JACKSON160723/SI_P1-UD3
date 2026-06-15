@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 1. Exploración del sistema de archivos y estructura de directorios en Windows 11</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --accent-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --code-bg: #0f172a;
+            --code-text: #f8fafc;
+            --border-color: #e2e8f0;
+            --callout-bg: #f0fdf4;
+            --callout-border: #16a34a;
+            --callout-text: #14532d;
+            --info-bg: #eff6ff;
+            --info-border: #3b82f6;
+            --info-text: #1e3a8a;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 26px;
+            margin-top: 0;
+            line-height: 1.3;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 20px;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 14px;
+            margin-top: 40px;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            color: #334155;
+            font-size: 16px;
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        code {
+            background-color: #f1f5f9;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #b91c1c;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Courier New', monospace;
+            margin: 16px 0;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            color: inherit;
+            font-size: 0.95em;
+        }
+
+        .callout {
+            background-color: var(--info-bg);
+            border-left: 4px solid var(--info-border);
+            padding: 18px 20px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--info-text);
+        }
+
+        .callout-title {
+            font-weight: bold;
+            font-size: 1.05em;
+            margin-bottom: 8px;
+        }
+
+        .blockquote {
+            background-color: #f8fafc;
+            border-left: 4px solid #94a3b8;
+            padding: 12px 16px;
+            margin: 16px 0;
+            font-style: italic;
+            color: #475569;
+        }
+
+        ul, ol {
+            padding-left: 24px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.85em;
+            color: #64748b;
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Práctica 1. Exploración del sistema de archivos y estructura de directorios en Windows 11</h1>
+    </header>
+
+    <p>En esta práctica realizarás una exploración inicial de los sistemas de archivos, las herramientas de gestión (gráficas y por comandos) y la estructura de directorios en un entorno <strong>Windows 11 Pro</strong>. Conocerás cómo identificar el sistema de archivos del disco, navegar por las carpetas principales y utilizar herramientas como el <strong>Explorador de archivos</strong> y <strong>PowerShell</strong> para obtener información detallada.</p>
+
+    <h3>Objetivos de la práctica</h3>
+    <ul>
+        <li>Identificar el sistema de archivos del equipo.</li>
+        <li>Gestionar archivos y directorios mediante herramientas gráficas y PowerShell.</li>
+        <li>Reconocer la estructura de directorios del sistema.</li>
+        <li>Comprender la función de las carpetas principales.</li>
+    </ul>
+
+    <h2>Ejercicio 1. Identificación y análisis del sistema de archivos</h2>
+
+    <h3>Parte A. Comprobación con interfaz gráfica</h3>
+    <ol>
+        <li>Prueba 5 formas diferentes de acceso al <strong>Explorador de archivos</strong>.</li>
+    </ol>
+
+    <div class="callout">
+        <div class="callout-title">Explorador de archivos</div>
+        <p>El <strong>Explorador de archivos</strong> es la herramienta gráfica de Windows que permite navegar, organizar y gestionar archivos, carpetas y unidades del sistema. Ofrece una vista jerárquica del sistema de archivos y acceso rápido a ubicaciones frecuentes como <em>Este equipo</em>, <em>Descargas</em> o <em>Documentos</em>.</p>
+        
+        <p>Existen diversas <strong>formas de acceder al Explorador de archivos</strong>:</p>
+        <ol>
+            <li><strong>Icono de la barra de tareas:</strong> Haz clic en el icono del <em>Explorador de archivos</em> anclado en la barra de tareas.</li>
+            <li><strong>Atajo de teclado:</strong> Pulsa <strong>Windows + E</strong>.</li>
+            <li><strong>Menú Inicio (búsqueda):</strong> Abre el <em>Menú Inicio</em>, escribe <em>Explorador de archivos</em> y pulsa <em>Enter</em>.</li>
+            <li><strong>Menú Inicio (acceso directo):</strong> Abre el <em>Menú Inicio</em>. Si aparece el icono de <em>Explorador de archivos</em> en la parte superior o lateral, haz clic sobre él.</li>
+            <li><strong>Menú contextual avanzado (Win + X):</strong> Pulsa <strong>Windows + X</strong> y selecciona <em>Explorador de archivos</em> en el menú.</li>
+            <li><strong>Cuadro de Ejecutar (Win + R):</strong> Pulsa <strong>Windows + R</strong>, escribe <code>explorer</code> y pulsa <em>Enter</em>. También puedes escribir una ruta, por ejemplo: <code>explorer C:\</code>.</li>
+            <li><strong>Desde una terminal (PowerShell o CMD):</strong> Abre <em>PowerShell</em> o <em>Símbolo del sistema</em>, escribe <code>explorer</code> y pulsa <em>Enter</em> para abrir la carpeta actual. O bien: <code>explorer C:\Ruta\A\Carpeta</code>.</li>
+            <li><strong>Desde el Administrador de tareas:</strong> Abre el <em>Administrador de tareas</em> (Ctrl + Shift + Esc), menú <em>Archivo → Ejecutar nueva tarea</em>, escribe <code>explorer</code> y pulsa <em>Enter</em>.</li>
+            <li><strong>Doble clic en accesos directos del escritorio:</strong> Si tienes accesos directos como <em>Este equipo</em>, <em>Carpeta personal</em> u otras carpetas en el escritorio, haz doble clic sobre ellos.</li>
+        </ol>
+    </div>
+
+    <ol start="2">
+        <li>Una vez estés en el Explorador de archivos, identifica el panel izquierdo y selecciona <strong>Este equipo</strong>.</li>
+        <li>Localiza la unidad <strong>C:</strong> (unidad del sistema).</li>
+        <li>Haz clic derecho sobre <strong>C:</strong> → <strong>Propiedades</strong>.</li>
+        <li>Busca el campo <strong>Sistema de archivos</strong> e identifica si es NTFS, FAT32, etc.</li>
+        <li>Justifica por qué Windows 11 utiliza ese sistema de archivos.</li>
+    </ol>
+
+    <h3>Parte B. Comprobación mediante PowerShell</h3>
+    <ol>
+        <li>Prueba 5 formas diferentes de acceder a <strong>PowerShell</strong>.</li>
+    </ol>
+
+    <div class="callout">
+        <div class="callout-title">PowerShell</div>
+        <p><strong>PowerShell</strong> es una consola avanzada de administración que permite ejecutar comandos, automatizar tareas mediante scripts y gestionar prácticamente cualquier aspecto del sistema operativo.</p>
+        
+        <p>Existen diversas formas de <strong>abrir PowerShell</strong> en Windows 11:</p>
+        <ol>
+            <li><strong>Menú Inicio (búsqueda rápida):</strong> Abre el <em>Menú Inicio</em>, escribe <em>PowerShell</em>, pulsa <em>Enter</em> o haz clic en <em>Windows PowerShell</em>.</li>
+            <li><strong>Atajo de teclado (Win + X):</strong> Pulsa <strong>Windows + X</strong> para abrir el menú avanzado y selecciona <em>Windows PowerShell</em> o <em>Windows PowerShell (Administrador)</em>.</li>
+            <li><strong>Cuadro de Ejecutar (Win + R):</strong> Pulsa <strong>Windows + R</strong>, escribe <code>powershell</code> y pulsa <em>Enter</em>. Para abrirlo como administrador:
+                <pre><code>powershell -Command "Start-Process powershell -Verb runAs"</code></pre>
+            </li>
+            <li><strong>Desde el Explorador de archivos:</strong> Navega a cualquier carpeta, haz clic en la barra de direcciones, escribe <code>powershell</code> para abrirlo <em>en esa ruta</em>.</li>
+            <li><strong>Desde una ventana CMD:</strong>
+                <div class="blockquote"><strong>CMD (Símbolo del sistema):</strong> consola antigua basada en texto, menos potente que PowerShell.</div>
+                Si tienes abierto CMD, escribe: <code>powershell</code>. Para abrirlo como administrador:
+                <pre><code>powershell Start-Process powershell -Verb runAs</code></pre>
+            </li>
+            <li><strong>Desde el Administrador de tareas:</strong> Abre el Administrador de tareas (<em>Ctrl + Shift + Esc</em>), ve a <em>Archivo → Ejecutar nueva tarea</em>, escribe <code>powershell</code> y mark <em>Crear esta tarea con privilegios administrativos</em>.</li>
+            <li><strong>Desde Windows Terminal:</strong>
+                <div class="blockquote"><strong>Windows Terminal:</strong> aplicación moderna que puede abrir <em>varias consolas</em> (PowerShell, CMD, WSL…). No es una consola, sino un <em>contenedor</em> de consolas.</div>
+                Abre <em>Windows Terminal</em> desde el menú Inicio o Win + X y selecciona <em>PowerShell</em> en una nueva pestaña.</li>
+            <li><strong>Acceso directo en barra de tareas o escritorio:</strong> Puedes anclar PowerShell a la barra de tareas o crear un acceso directo.</li>
+        </ol>
+    </div>
+
+    <ol start="2">
+        <li>Abre la aplicación <strong>Windows PowerShell</strong>.</li>
+        <li>Ejecuta el siguiente comando:</li>
+    </ol>
+    <pre><code>Get-Volume</code></pre>
+
+    <div class="callout">
+        <div class="callout-title">¿Qué es Get-Volume?</div>
+        <p><code>Get-Volume</code> es un <strong>cmdlet</strong> de PowerShell. Un <strong>cmdlet</strong> (<em>command-let</em>) es un <strong>comando especial de PowerShell</strong>, más avanzado que los comandos tradicionales de CMD. Trabajan con <strong>objetos</strong>, permitiendo obtener información estructurada y completa.</p>
+        
+        <h4>¿Qué hace?</h4>
+        <p>Muestra información detallada sobre los <strong>volúmenes</strong> del sistema (unidades lógicas con sistema de archivos asignadas a una letra).</p>
+        
+        <h4>¿Para qué sirve? Permite identificar rápidamente:</h4>
+        <ul>
+            <li>El <strong>sistema de archivos</strong> de cada volumen.</li>
+            <li>El <strong>tamaño total</strong> de la unidad y el <strong>espacio libre disponible</strong>.</li>
+            <li>El <strong>estado de salud</strong> del volumen (HealthStatus).</li>
+            <li>La <strong>letra</strong> o punto de montaje y el <strong>tipo</strong> de unidad (Fixed, Removable, etc.).</li>
+        </ul>
+
+        <h4>Información típica que devuelve:</h4>
+        <ul>
+            <li><strong>DriveLetter</strong> → C:, D:, E:</li>
+            <li><strong>FileSystem</strong> → NTFS, FAT32…</li>
+            <li><strong>Size</strong> → tamaño total del volumen</li>
+            <li><strong>SizeRemaining</strong> → espacio libre</li>
+            <li><strong>HealthStatus</strong> → estado ("Healthy", "Warning", etc.)</li>
+            <li><strong>DriveType</strong> → Fixed, Removable, Optical…</li>
+        </ul>
+    </div>
+
+    <ol start="4">
+        <li>Localiza la fila correspondiente a la unidad <strong>C:</strong> y revisa: <code>FileSystem</code>, <code>Size</code>, <code>SizeRemaining</code> y <code>HealthStatus</code>.</li>
+        <li>Comprueba que el sistema de archivos coincide con el visto en la interfaz gráfica.</li>
+    </ol>
+
+    <h2>Ejercicio 2. Gestión del sistema de archivos mediante herramientas gráficas</h2>
+    <ol>
+        <li>Abre el <strong>Explorador de archivos</strong>.</li>
+        <li>Activa <strong>Ver → Mostrar → Elementos ocultos</strong> para visualizar carpetas del sistema.</li>
+        <li>Explora las siguientes rutas una por una:
+            <ul>
+                <li><code>C:\</code></li>
+                <li><code>C:\Windows</code></li>
+                <li><code>C:\Program Files</code></li>
+                <li><code>C:\Users</code></li>
+                <li><code>C:\ProgramData</code></li>
+            </ul>
+        </li>
+        <li>En cada carpeta: observa su contenido, identifica qué tipo de archivos/subcarpetas contiene y trata de deducir su función general.</li>
+        <li>Registra brevemente la función de cada directorio principal.</li>
+    </ol>
+
+    <h2>Ejercicio 3. Gestión del sistema de archivos mediante comandos (PowerShell)</h2>
+    <ol>
+        <li>Abre <strong>PowerShell</strong>.</li>
+        <li>Ejecuta el comando:
+            <pre><code>Get-ChildItem C:\</code></pre>
+        </li>
+        <li>Observa qué elementos aparecen en la raíz del sistema.</li>
+        <li>Ejecuta ahora:
+            <pre><code>Get-ChildItem C:\Windows -Directory</code></pre>
+        </li>
+        <li>Analiza las carpetas mostradas y compáralas con lo visto en el Explorador.</li>
+        <li>Ejecuta:
+            <pre><code>Get-Item C:\Users</code></pre>
+        </li>
+        <li>Observa los metadatos que aparecen (tamaño, atributos, etc.).</li>
+        <li>Compara las diferencias entre lo que se ve en la GUI y lo que proporciona PowerShell.</li>
+    </ol>
+
+    <h2>Ejercicio 4. Estructura de directorios: análisis y funciones</h2>
+    <ol>
+        <li>Localiza y examina estas carpetas clave:
+            <ul>
+                <li><code>C:\Windows</code> → archivos esenciales del sistema operativo.</li>
+                <li><code>C:\Program Files</code> → aplicaciones instaladas de 64 bits.</li>
+                <li><code>C:\Program Files (x86)</code> → aplicaciones de 32 bits.</li>
+                <li><code>C:\Users</code> → perfiles y datos de usuario.</li>
+                <li><code>C:\ProgramData</code> → datos compartidos y configuraciones globales.</li>
+            </ul>
+        </li>
+        <li>Describe qué función cumple cada carpeta.</li>
+        <li>Indica qué tipo de información contiene cada una (Archivos del sistema, Programas instalados, Configuraciones, Datos de usuario, Datos globales o compartidos).</li>
+    </ol>
+
+    <h2>Ejercicio 5. Rutas absolutas y relativas</h2>
+    <ol>
+        <li>Abre <strong>PowerShell</strong>.</li>
+        <li>Ejecuta:
+            <pre><code>Get-Location</code></pre>
+        </li>
+        <li>Anota la ruta actual.</li>
+        <li>Cambia de carpeta usando:
+            <pre><code>Set-Location C:\Windows</code></pre>
+        </li>
+        <li>Vuelve al directorio anterior con:
+            <pre><code>Set-Location ..</code></pre>
+        </li>
+        <li>Vuelve a ejecutar:
+            <pre><code>Get-Location</code></pre>
+        </li>
+        <li>Explica:
+            <ul>
+                <li>Qué es una ruta absoluta.</li>
+                <li>Qué es una ruta relativa.</li>
+                <li>Qué ejemplos has utilizado en este ejercicio.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <div class="footer">
+        <p>Práctica de Exploración del Sistema de Archivos en Windows 11 — Copia de Respaldo Local</p>
+    </div>
+</div>
+
+</body>
+</html>
